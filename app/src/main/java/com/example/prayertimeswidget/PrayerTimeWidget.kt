@@ -19,26 +19,29 @@ class PrayerTimeWidget : AppWidgetProvider() {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
         // Placeholder times; replace with API logic
         val times = mapOf("Fajr" to "04:07", "Sunrise" to "05:31", "Dhuhr" to "12:07",
-                          "Asr" to "16:48", "Maghrib" to "18:44", "Isha" to "20:08")
+            "Asr" to "16:48", "Maghrib" to "18:44", "Isha" to "20:08")
         val idsMap = mapOf("Fajr" to R.id.time_fajr, "Sunrise" to R.id.time_sunrise,
-                           "Dhuhr" to R.id.time_dhuhr, "Asr" to R.id.time_asr,
-                           "Maghrib" to R.id.time_maghrib, "Isha" to R.id.time_isha)
+            "Dhuhr" to R.id.time_dhuhr, "Asr" to R.id.time_asr,
+            "Maghrib" to R.id.time_maghrib, "Isha" to R.id.time_isha)
         val now = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-        var current="", next=""
+        var current = ""
+        var next: String? = null // Make 'next' nullable
+
         val sorted = times.entries.sortedBy { it.value }
-        for(i in sorted.indices) {
-            if(now < sorted[i].value) {
-                next=sorted[i].key
-                if(i>0) current=sorted[i-1].key
+        for (i in sorted.indices) {
+            if (now < sorted[i].value) {
+                next = sorted[i].key
+                if (i > 0) current = sorted[i - 1].key
                 break
             }
         }
-        if(current.isEmpty() && sorted.isNotEmpty()) current=sorted.last().key
-        for((k,v) in times) {
+        if (current.isEmpty() && sorted.isNotEmpty()) current = sorted.last().key
+
+        for ((k, v) in times) {
             views.setTextViewText(idsMap[k]!!, v)
-            views.setTextColor(idsMap[k]!!, when(k) {
+            views.setTextColor(idsMap[k]!!, when (k) {
                 current -> Color.GREEN
-                next -> Color.YELLOW
+                next -> Color.YELLOW // Now 'next' can be null
                 else -> Color.WHITE
             })
         }
