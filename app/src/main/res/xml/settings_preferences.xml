@@ -1,19 +1,18 @@
-
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        app:key="calc_method"
-        app:title="Calculation Method"
-        app:entries="@array/calc_methods"
-        app:entryValues="@array/calc_method_values"
-        app:defaultValue="ISNA" />
+        android:key="calc_method"
+        android:title="Calculation Method"
+        android:entries="@array/calc_methods"
+        android:entryValues="@array/calc_method_values"
+        android:defaultValue="ISNA" />
 
     <SwitchPreferenceCompat
-        app:key="notifications"
-        app:title="Prayer Time Notifications"
-        app:defaultValue="true" />
+        android:key="notifications"
+        android:title="Prayer Time Notifications"
+        android:defaultValue="true" />
 
     <SwitchPreferenceCompat
-        app:key="aod"
-        app:title="Always-On Display (AOD)"
-        app:defaultValue="false" />
+        android:key="aod"
+        android:title="Always-On Display (AOD)"
+        android:defaultValue="false" />
 </PreferenceScreen>
