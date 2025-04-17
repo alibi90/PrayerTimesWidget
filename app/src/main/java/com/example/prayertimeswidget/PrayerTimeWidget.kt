@@ -23,7 +23,7 @@ class PrayerTimeWidget : AppWidgetProvider() {
         val idsMap = mapOf("Fajr" to R.id.time_fajr, "Sunrise" to R.id.time_sunrise,
             "Dhuhr" to R.id.time_dhuhr, "Asr" to R.id.time_asr,
             "Maghrib" to R.id.time_maghrib, "Isha" to R.id.time_isha)
-        val now = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        val now = SimpleDateFormat("hh:mm", Locale.getDefault()).format(Date())
         var current = ""
         var next: String? = null // Make 'next' nullable
 
